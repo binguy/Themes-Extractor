@@ -12,8 +12,9 @@ namespace ThemesOutputer
         {
             // Create new stopwatch.
             Stopwatch stopwatch = new Stopwatch();
-
+            int yeeter = 0;
             // Begin timing.
+            do {
             stopwatch.Start();
             string text = "";
             int heey = 0;
@@ -21,17 +22,23 @@ namespace ThemesOutputer
             var themes = new List<string>();
             var foundIndexes = new List<int>();
             bool checker = false;
+                string path;
             do {
                 try
                 {
                     Console.WriteLine("Please write a path to level.lsb which you want to use for Extracting the themes");
-                    string path = Console.ReadLine();
+                    path = Console.ReadLine();
+
                     if (path.Contains("\""))
                     {
                         path = path.Remove(path.LastIndexOf("\""));
                         path = path.Substring(path.IndexOf("\"")+1);
                     }
-                var fileStream = new FileStream(@$"{path}", FileMode.Open, FileAccess.Read);
+                    if (path.Contains("level.lsb"))
+                    {
+                        path = path.Remove(path.LastIndexOf("\\level.lsb"));
+                    }
+                var fileStream = new FileStream(@$"{path}\level.lsb", FileMode.Open, FileAccess.Read);
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                 {
                     string line;
@@ -112,7 +119,17 @@ namespace ThemesOutputer
 
             // Write result.
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
-            Console.ReadKey();
+            Console.WriteLine("Do you want to complete this process?\n 1-yes, anything else-no");
+            string stfu = Console.ReadLine();
+                if (stfu == "1")
+            {
+                    yeeter = 1;
+                }
+                else
+                {
+                    yeeter = 0;
+                }
+            } while (yeeter == 1);
         }
     }
 }
