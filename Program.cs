@@ -42,7 +42,9 @@ namespace ThemesOutputer
                         {
                             try
                             {
-                                string[] h = Directory.GetDirectories(@"C:\Program Files (x86)\Steam\steamapps\workshop\content\440310\");
+                                Console.WriteLine("Please write the Disk Drive on which you have installed Steam");
+                                string DiskDrive = Console.ReadLine();
+                                string[] h = Directory.GetDirectories($@"{DiskDrive}:\Program Files (x86)\Steam\steamapps\workshop\content\440310\");
                                 yeetdirs = h.ToList();
                                 Console.WriteLine($"The number of directories(levels) in your workshop is: {yeetdirs.Count}");
                             }catch(Exception e)
