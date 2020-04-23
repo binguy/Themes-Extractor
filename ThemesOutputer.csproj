@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	<Version>1.3.0</Version>
+	<Version>1.5.0</Version>
     <Authors>MyBinGamer</Authors>
     <Company>GitHub</Company>
     <PackageDescription>This package adds an Themes-Extractor!</PackageDescription>
