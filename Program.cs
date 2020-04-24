@@ -25,7 +25,7 @@ namespace ThemesOutputer
             do {
                 try
                 {
-                    Console.WriteLine("Please write a path to level.lsb which you want to use for Extracting the themes.\n or... type 'yeet' if you want to load every single themes from Workshop levels");
+                    Console.WriteLine("Please write a path to level.lsb which you want to use for Extracting the themes.\n or... [REDACTED]");
                     path = Console.ReadLine();
                         Console.WriteLine("Please write the system path to folder where you want themes to be extracted. without \\ at the end");
                         string tpath = Console.ReadLine();
