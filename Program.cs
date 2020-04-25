@@ -31,11 +31,13 @@ namespace ThemesOutputer
                         string tpath = Console.ReadLine();
                         if (path.Contains("\""))
                         {
+                            //This removes the "" symbols from the path. That happens when you drag folder/file in Console - Path will look like "C:\System32\Secrets\Pirate.lsb" and that code removes " "
                             path = path.Remove(path.LastIndexOf("\""));
                             path = path.Substring(path.IndexOf("\"") + 1);
                         }
                         if (path.Contains("level.lsb"))
                         {
+                            //If user just dragged the level level.lsb so this path will include the level.lsb at the end. Due to conflits(User might not include the level.lsb at the end i had to remove this to fix conflict
                             path = path.Remove(path.LastIndexOf("\\level.lsb"));
                         }
                         if (path == "yeet")
@@ -68,6 +70,7 @@ namespace ThemesOutputer
                                 string line;
                                 while ((line = streamReader.ReadLine()) != null)
                                 {
+                                    //We read the entire level.lsb here
                                     text = line;
                                 }
                             }
@@ -75,8 +78,9 @@ namespace ThemesOutputer
                             int idxa = text.IndexOf("checkpoints");
                             if (idx != -1)
                                 {
-                                text = text.Remove(idxa - 1);
-                                text = text.Substring(idx + 9);
+
+                                text = text.Remove(idxa - 1); //Removes some chars to make clear string of theme
+                                text = text.Substring(idx + 9); //Removes some chars to make clear string of theme
                                 Console.WriteLine($"The index of themes: {idx}, and index of he: {idxa}");
                                 for (int i = text.IndexOf('{'); i > -1; i = text.IndexOf('{', i + 1))
                                 {
@@ -85,6 +89,7 @@ namespace ThemesOutputer
                                 }
                                 for (int a = 1; a < foundIndexes.Count; a++)
                                 {
+                                    //Something which I do not remember. I might need to call to memory and ask what the fuck is this.
                                     foundIndexes[a] = foundIndexes[a] + heey;
                                     heey = heey + 1;
                                     text = text.Insert(foundIndexes[a], "\n");
@@ -95,24 +100,27 @@ namespace ThemesOutputer
                                     string line;
                                     while ((line = reader.ReadLine()) != null)
                                     {
+                                        //Still can't remember what the heck this thing is doing with my program
                                         if (line != " ") {
                                             line = line.Remove(line.LastIndexOf(","));
                                             names.Add(line);
                                         }
                                     }
                                 }
+                                //Path to folder where Themes will drop their bodies
                                 if (tpath.Contains("\""))
                                 {
                                     tpath = tpath.Remove(tpath.LastIndexOf("\""));
                                     tpath = tpath.Substring(tpath.IndexOf("\"") + 1);
                                 }
+                                //For loop for all themes found in level. So for loop loops the amount of themes level.lsb had. 
                                 for (int i = 0; i < names.Count; i++)
                                 {
 
                                     themes.Add(names[i]);
                                     if (i == names.Count - 1)
                                     {
-                                        themes[i] = themes[i].Remove(themes[i].LastIndexOf("]"));
+                                        themes[i] = themes[i].Remove(themes[i].LastIndexOf("]")); //The last theme is dick so we must calm it down
                                     }
                                     idx = names[i].IndexOf("name");
                                     idxa = names[i].IndexOf("gui");
@@ -122,35 +130,38 @@ namespace ThemesOutputer
                                     }
                                     names[i] = names[i].Remove(idxa - 3);
                                     names[i] = names[i].Substring(idx + 7);
-                                    string fileName = @$"{tpath}\{names[i]}.lst";
+                                    string fileName = @$"{tpath}\{names[i]}.lst"; //Completed path with name and path
                                     FileInfo fi = new FileInfo(fileName);
                                     //Check if file already exists. If yes, delete it.     
                                     if (fi.Exists)
                                     {
+                                        //if the same theme exists in folder.
                                         fi.Delete();
                                     }
                                     // Create a new file     
                                     using (StreamWriter sw = fi.CreateText())
                                     {
-                                        sw.WriteLine(themes[i]);
-                                        Console.WriteLine($"File Created! Name: {names[i]}");
+
+                                        sw.WriteLine(themes[i]);//It writes theme string into the file in one line. might update later so there will be /n everywhere
+                                        Console.WriteLine($"File Created! Name: {names[i]}");//Tells us that File created without any errors
                                     }
                                 }
                             }
                         }
-                        checker = true;
+                        checker = true;//No errors = freedom
             }
             catch (Exception Ex)
             {
+                        //If you will screw something you go there.
                 Console.WriteLine(Ex.ToString());
             }
         } while (checker == false);
             // Stop timing.
-            stopwatch.Stop();
+            stopwatch.Stop();//Timer because I wanted to say C# is 100000000x faster then Java.
 
             // Write result.
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
-            Console.WriteLine("Do you want to repeat process?\n 1-yes, anything else-no");
+            Console.WriteLine("Do you want to repeat process?\n 1-yes, anything else-no"); //Choice = red pill or blue pill.
             string stfu = Console.ReadLine();
                 if (stfu == "1")
             {
@@ -160,7 +171,7 @@ namespace ThemesOutputer
                 {
                     yeeter = 0;
                 }
-            } while (yeeter == 1);
+            } while (yeeter == 1);//yeet
         }
     }
 }
