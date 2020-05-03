@@ -7,6 +7,7 @@ using System.Text;
 using static ThemesOutputer.ThemeHelper;
 using static ThemesOutputer.TPathHelper;
 using static ThemesOutputer.TextMakerTheme;
+using static ThemesOutputer.PrefabsClass;
 
 namespace ThemesOutputer
 {
@@ -25,7 +26,17 @@ namespace ThemesOutputer
             do {
                 try
                 {
-                        TextThemes(Path(), TPath());
+                        Console.WriteLine("Prefabs or Themes? 1-Prefabs, anything else - themes");
+                        string stfu1 = Console.ReadLine();
+                        if (stfu1 == "1")
+                        {
+                            Console.WriteLine("Prefabs Code hhhhh");
+                            Preeeefabs(PathP(), TPathP());
+                        }
+                        else
+                        {
+                            TextThemes(Path(), TPath());
+                        }
                        
                         checker = true;//No errors = freedom
             }
