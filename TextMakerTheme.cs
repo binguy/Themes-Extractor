@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using static ThemesOutputer.TextMakerPlus;
 
 namespace ThemesOutputer
 {
@@ -13,42 +14,10 @@ namespace ThemesOutputer
             
             foreach (string yeey in yeetdirs)
             {
-                string text = "";
-                int heey = 0;
                 var themes = new List<string>();
-                var foundIndexes = new List<int>();
                 var names = new List<string>();
-                var fileStream = new FileStream(@$"{yeey}\level.lsb", FileMode.Open, FileAccess.Read);
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-                {
-                    string line;
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        //We read the entire level.lsb here
-                        text = line;
-                    }
-                }
-                int idx = text.IndexOf("themes");
-                int idxa = text.IndexOf("checkpoints");
-                if (idx != -1)
-                {
-
-                    text = text.Remove(idxa - 1); //Removes some chars to make clear string of theme
-                    text = text.Substring(idx + 9); //Removes some chars to make clear string of theme
-                    Console.WriteLine($"The index of themes: {idx}, and index of he: {idxa}");
-                    for (int i = text.IndexOf('{'); i > -1; i = text.IndexOf('{', i + 1))
-                    {
-                        //for loop end when i=-1 ('{' not found)
-                        foundIndexes.Add(i);
-                    }
-                    for (int a = 1; a < foundIndexes.Count; a++)
-                    {
-                        //Something which I do not remember. I might need to call to memory and ask what the fuck is this.
-                        foundIndexes[a] = foundIndexes[a] + heey;
-                        heey = heey + 1;
-                        text = text.Insert(foundIndexes[a], "\n");
-
-                    }
+                    string text = Teeext(yeey);
+                        if(text !=null) {
                     using (StringReader reader = new StringReader(text))
                     {
                         string line;
@@ -71,8 +40,8 @@ namespace ThemesOutputer
                         {
                             themes[i] = themes[i].Remove(themes[i].LastIndexOf("]")); //The last theme is dick so we must calm it down
                         }
-                        idx = names[i].IndexOf("name");
-                        idxa = names[i].IndexOf("gui");
+                        int idx = names[i].IndexOf("name");
+                        int idxa = names[i].IndexOf("gui");
                         if (idxa == -1)
                         {
                             idxa = names[i].IndexOf("bg");
